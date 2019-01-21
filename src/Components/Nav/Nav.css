@@ -1,9 +1,53 @@
-.navigation {
+/* .navigation {
  float: left;
- width: 900px;
+ width: 1000px;
  color: #333;
  padding: 10px;
  border: 1px solid #ccc;
  margin: 0px 0px 5px 0px;
  background-color:#F3F2ED;
+} */
+
+.navigation{
+  background:#35424a;
+  color:#ffffff;
+  padding:10px 10px 10px 10px;
+  min-height:5px;
+  border-bottom:#e8491d 3px solid;
+  text-align: center;
+
+ }
+
+ .navigation a:hover{
+  color:#cccccc;
+  font-weight:bold;
 }
+
+
+ /* .home{
+   color: #e6e6e6;
+   font-size: 16px;
+   text-decoration: none;
+   padding:5px;
+
+ } */
+
+  .topics{
+   color:#e6e6e6;
+   font-size: 16px;
+   text-decoration: none;
+   padding:5px;
+
+ }
+  .articles{
+   color:#e6e6e6;
+   font-size: 16px;
+   text-decoration: none;
+   padding:5px;
+ }
+  .users{
+   color:#e6e6e6;
+   font-size: 16px;
+   text-decoration: none;
+   padding:5px;
+ }

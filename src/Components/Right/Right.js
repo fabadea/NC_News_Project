@@ -1,12 +1,21 @@
-import React from 'react'
 import './Right.css'
+import { Router } from '@reach/router'
+import Topics from '../Topics/Topics'
+import Articles from '../Articles/Articles'
+import Users from '../Users/Users'
 
-const Right = () => {
-  return (
-    <div className='Right'>
-      <h1>display articles here</h1>
-    </div>
-  )
+import React, { Component } from 'react'
+
+class Right extends Component {
+  render () {
+    return (
+      <Router className='Right'>
+        <Topics path='/topics' />
+        <Articles path='/articles' />
+        <Users path='/users' />
+      </Router>
+    )
+  }
 }
 
 export default Right
