@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import './App.css'
-import Header from './Components/Header/Header'
-import Nav from './Components/Nav/Nav'
-import Footer from './Components/Footer/Footer'
-import Left from './Components/Left/Left'
-import Right from './Components/Right/Right'
+import './Styles/App.css'
+import Header from './Components/Header'
+import Nav from './Components/Nav'
+import Footer from './Components/Footer'
+import TopicsDisplay from './Components/TopicDisplay'
+import ArticlesDisplay from './Components/ArticlesDisplay'
+import { Router } from '@reach/router'
 
 class App extends Component {
   render () {
@@ -12,8 +13,10 @@ class App extends Component {
       <div className='App'>
         <Header />
         <Nav />
-        <Left />
-        <Right />
+        <TopicsDisplay />
+        <Router>
+          <ArticlesDisplay path='/' />
+        </Router>
         <Footer />
       </div>
     )

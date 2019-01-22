@@ -1,0 +1,35 @@
+.left { 
+ color: #333;
+ border: 1px solid #ccc;
+ background:#e6e6e6;
+ margin: 5px 5px 5px 0px;
+ padding: 10px;
+ height: 350px;
+ width: 195px;
+ float: left;
+ align-content: center
+
+}
+
+h3{
+  padding: 9px
+}
+
+.buttonParrent{
+  padding: 3px;
+  text-align: center;
+}
+
+.button {
+  transition-duration: 0.4s;
+  background-color: 333;
+  border: 2px solid #e8491d;
+  align-content: center;
+  padding: 3px;
+
+}
+
+.button:hover {
+  background-color: #e8491d; 
+  color: white;
+}

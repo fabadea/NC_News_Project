@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import { BarLoader } from 'react-css-loaders'
-import * as api from '../api'
+import * as api from './api'
 
-class Articles extends Component {
+class Users extends Component {
   state = {
-    articles: [],
+    users: [],
     loading: true
   }
   render () {
-    const { articles, loading } = this.state
+    const { users, loading } = this.state
     return (
       <div>
         {loading ? (
           <BarLoader color='grey' />
         ) : (
-          articles.map(({ title }) => (
-            <ul key={articles.article_id}>
-              <p>{title}</p>
+          users.map(({ username }) => (
+            <ul key={username}>
+              <p>{username}</p>
             </ul>
           ))
         )}
@@ -24,15 +24,15 @@ class Articles extends Component {
     )
   }
   componentDidMount () {
-    this.getArticles()
+    this.getUsers()
   }
 
-  getArticles = () => {
+  getUsers = () => {
     api
-      .getArticles()
-      .then(articles => {
+      .getUsers()
+      .then(users => {
         this.setState(() => ({
-          articles,
+          users,
           loading: false
         }))
       })
@@ -40,4 +40,4 @@ class Articles extends Component {
   }
 }
 
-export default Articles
+export default Users
