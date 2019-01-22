@@ -9,11 +9,13 @@ import React, { Component } from 'react'
 class Right extends Component {
   render () {
     return (
-      <Router className='Right'>
-        <Topics path='/topics' />
-        <Articles path='/articles' />
-        <Users path='/users' />
-      </Router>
+      <div className='right'>
+        <Router>
+          <Topics path='/topics' />
+          <Articles path='/articles' />
+          <Users path='/users' />
+        </Router>
+      </div>
     )
   }
 }

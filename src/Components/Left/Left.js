@@ -4,7 +4,9 @@ import './Left.css'
 const Left = () => {
   return (
     <div className='left'>
-      <h1>Some features here</h1>
+      <h3>
+        Some features here, maybe sort by popularity, trending orr weather app
+      </h3>
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { BarLoader } from 'react-css-loaders'
-import { Link } from '@reach/router'
 import * as api from '../api'
 
 class Articles extends Component {
@@ -15,13 +14,10 @@ class Articles extends Component {
         {loading ? (
           <BarLoader color='grey' />
         ) : (
-          articles.map(article => (
-            <li key={article.article_id}>
-              <Link to={article.title}>
-                {' '}
-                <p>{article.title}</p>
-              </Link>
-            </li>
+          articles.map(({ title }) => (
+            <ul key={articles.article_id}>
+              <p>{title}</p>
+            </ul>
           ))
         )}
       </div>
@@ -34,9 +30,9 @@ class Articles extends Component {
   getArticles = () => {
     api
       .getArticles()
-      .then(article => {
+      .then(articles => {
         this.setState(() => ({
-          article,
+          articles,
           loading: false
         }))
       })

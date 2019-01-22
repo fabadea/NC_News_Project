@@ -4,7 +4,7 @@ const API_URL = 'https://nc-news-be-flaviu.herokuapp.com/api'
 
 export const getTopics = async () => {
   const { data } = await axios.get(`${API_URL}/topics`)
-  return data
+  return data.topics
 }
 
 export const getArticles = async () => {

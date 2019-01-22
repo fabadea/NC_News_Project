@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { BarLoader } from 'react-css-loaders'
-import { Link } from '@reach/router'
 import * as api from '../api'
 
 class Users extends Component {
@@ -15,13 +14,10 @@ class Users extends Component {
         {loading ? (
           <BarLoader color='grey' />
         ) : (
-          users.map(user => (
-            <li key={user.username}>
-              <Link to={user.username}>
-                {' '}
-                <p>{user.username}</p>
-              </Link>
-            </li>
+          users.map(({ username }) => (
+            <ul key={username}>
+              <p>{username}</p>
+            </ul>
           ))
         )}
       </div>
@@ -34,9 +30,9 @@ class Users extends Component {
   getUsers = () => {
     api
       .getUsers()
-      .then(topic => {
+      .then(users => {
         this.setState(() => ({
-          topic,
+          users,
           loading: false
         }))
       })
