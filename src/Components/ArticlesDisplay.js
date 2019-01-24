@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { BarLoader } from 'react-css-loaders'
 import * as api from './api'
-import '../Styles/ArticlesDisplay.css'
 
 class ArticlesDisplay extends Component {
   state = {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { BarLoader } from 'react-css-loaders'
 import * as api from './api'
+import { Link } from '@reach/router'
+import '../Styles/Users.css'
 
 class Users extends Component {
   state = {
@@ -10,24 +12,27 @@ class Users extends Component {
   render () {
     const { users, loading } = this.state
     return (
-      <div>
+      <div className='main'>
         {loading ? (
           <BarLoader color='grey' />
         ) : (
-          users.map(({ username }) => (
-            <ul key={username}>
-              <p>{username}</p>
-            </ul>
+          users.map(user => (
+            <li key={user.user_id} className='user'>
+              <Link to={`/users/${user.username}`}>
+                <img src={user.avatar_url} className='avatar' />
+                {user.username}
+              </Link>
+            </li>
           ))
         )}
       </div>
     )
   }
   componentDidMount () {
-    this.getUsers()
+    this.fetchUser()
   }
 
-  getUsers = () => {
+  fetchUser = () => {
     api
       .getUsers()
       .then(users => {

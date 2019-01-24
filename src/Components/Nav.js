@@ -1,19 +1,17 @@
 import React from 'react'
 import { Link } from '@reach/router'
-import '../Styles/Nav.css'
+import '../Styles/App.css'
 
 const Nav = () => {
   return (
-    <nav className='navigation'>
-      {/* <Link className='topics' to='/topics'>
-       Topics
-     </Link>
+    <nav className='nav'>
+      <Link className='topics' to='/topics'>
+        Topics
+      </Link>
 
-       <Link className='users' to='/users'>
-         Users
-     </Link> */}
-
-      <p>sorting funct here</p>
+      <Link className='users-button' to='/users'>
+        Users
+      </Link>
     </nav>
   )
 }

@@ -1,15 +1,4 @@
-.left { 
- color: #333;
- border: 1px solid #ccc;
- background:#e6e6e6;
- margin: 5px 5px 5px 0px;
- padding: 10px;
- height: 350px;
- width: 195px;
- float: left;
- align-content: center
 
-}
 
 h3{
   padding: 9px

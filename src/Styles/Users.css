@@ -1,0 +1,44 @@
+.user {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 16px;
+  color: #e8491d
+
+}
+
+.users {
+  list-style: none;
+  text-decoration: none;
+}
+
+ .user a:hover{
+  color:#8d8d8d;
+  text-decoration: none;
+
+}
+
+.avatar {
+  height: 40px;
+  width: 40px;
+  padding: 0px 20px 0px 0px;
+
+}
+
+.users-right { 
+ color: #333;
+ border: 1px solid #ccc;
+ background:#e6e6e6;
+ margin: 5px 5px 5px 5px;
+ padding: 10px;
+ height: 100%;
+ width: 80fr;
+ min-height: 360px;
+ min-width: 30;
+ align-content: center
+
+}
+
+

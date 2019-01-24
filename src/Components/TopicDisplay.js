@@ -12,7 +12,7 @@ class TopicsDisplay extends Component {
   render () {
     const { topics, loading } = this.state
     return (
-      <div className='left'>
+      <div className='column.side'>
         <h3>About what do you like to read today?</h3>
 
         {loading ? (
