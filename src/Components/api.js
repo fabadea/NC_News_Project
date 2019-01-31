@@ -2,32 +2,48 @@ import axios from 'axios'
 
 const API_URL = 'https://nc-news-be-flaviu.herokuapp.com/api'
 
-export const getTopics = async () => {
-  const { data } = await axios.get(`${API_URL}/topics`)
-  return data.topics
+export const fetchArticles = topic => {
+  let path = !topic
+    ? `${API_URL}/articles`
+    : `${API_URL}/topics/${topic}/articles`
+
+  return axios
+    .get(path)
+    .then(res => res.data.articles)
+    .catch(console.log)
 }
 
-export const getArticles = async () => {
-  const { data } = await axios.get(`${API_URL}/articles`)
-  return data.articles
+export const fetchArticle = id => {
+  return axios
+    .get(`${API_URL}/articles/${id}`)
+    .then(res => res.data.article[0])
+    .catch(console.log)
 }
 
-export const getUsers = async () => {
-  const { data } = await axios.get(`${API_URL}/users`)
-  return data.users
+export const fetchComments = id => {
+  return axios
+    .get(`${API_URL}/articles/${id}/comments`)
+    .then(res => res.data.comments)
+    .catch(console.log)
 }
 
-export const getArticleByTopic = async slug => {
-  const { data } = await axios.get(`${API_URL}/topics/${slug}/articles`)
-  return data.article
+export const fetchUsers = () => {
+  return axios
+    .get(`${API_URL}/users`)
+    .then(res => res.data.users)
+    .catch(console.log)
 }
 
-export const getArticleById = async article_id => {
-  const { data } = await axios.get(`${API_URL}/articles/${article_id}`)
-  return data.article
+export const fetchUser = author => {
+  return axios
+    .get(`${API_URL}/users/${author}`)
+    .then(res => res.data.user)
+    .catch(console.log)
 }
 
-export const getCommentsByArticleId = async article_id => {
-  const { data } = await axios.get(`${API_URL}/articles/${article_id}/comments`)
-  return data.comments
+export const fetchTopics = () => {
+  return axios
+    .get(`${API_URL}/topics`)
+    .then(res => res.data.topics)
+    .catch(console.log)
 }

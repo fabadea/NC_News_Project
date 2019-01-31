@@ -1,0 +1,20 @@
+header{
+ display: flex;
+ flex-direction: column;
+ background:#35424a;
+ color:#e6e6e6;
+ text-align: center;
+ width: 100%;
+ 
+
+}
+header a:hover{
+ color:#cccccc;
+}
+
+.home{
+ color:#e6e6e6;
+ font-size: 32px;
+ text-decoration: none;
+ padding:4vh;
+}

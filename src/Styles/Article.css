@@ -1,0 +1,34 @@
+
+.articleCard {
+  min-width: 32vh;
+  max-width: 100vh;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10%;
+  border: solid rgb(206, 206, 206) 3px;
+  margin: 10px;
+  color: rgb(66, 66, 66);
+  font-size: 20px;
+}
+
+.articleCard:hover {
+  border: solid #cccccc 5px;
+}
+
+.cardData {
+  border-top: rgb(177, 177, 177) solid 1px;
+  padding-top: 5px;
+  margin-top: 5px;
+  flex: 1;
+}
+.user {
+  font-weight: bold;
+}
+
+.author {
+  color: grey;
+  font-size: 16px
+
+}

@@ -1,0 +1,17 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: rgb(241, 241, 241);
+  overflow: hidden;
+  width: 100%;
+
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-decoration: none;
+  align-content: center
+} 

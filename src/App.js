@@ -1,51 +1,31 @@
 import React, { Component } from 'react'
-import './Styles/App.css'
-import Header from './Components/Header'
-import Nav from './Components/Nav'
-import Footer from './Components/Footer'
-import TopicsDisplay from './Components/TopicDisplay'
-import ArticlesDisplay from './Components/ArticlesDisplay'
-import Users from './Components/Users'
-import User from './Components/User'
-
+import './App.css'
+import Header from './Components/Header.js'
+import Footer from './Components/Footer.js'
+import Articles from './Components/Articles.js'
+import ArticleDetail from './Components/ArticleDetail.js'
+import User from './Components/User.js'
+import Users from './Components/Users.js'
+import NavBar from './Components/NavBar.js'
 import { Router } from '@reach/router'
 
 class App extends Component {
   render () {
     return (
-      <div className='col-1'>
+      <div className='App'>
         <Header />
-        <Nav />
-        <div className='content'>
-          <aside>
-            <TopicsDisplay />
-          </aside>
-          <article>
-            <Router>
-              <ArticlesDisplay path='/' />
-              <ArticlesDisplay path='/topics/:topic/articles' />
-              <Users path='/users' />
-              <User path='/users/:username' />
-            </Router>
-          </article>
-        </div>
+        <NavBar />
+        <Router>
+          <Articles path='/' />
+          <Articles path='/articles' />
+          <Articles path='/topics/:topic' />
+          <ArticleDetail path='/articles/:id' />
+          <Users path='/users' />
+          <User path='/users/:author' />
+        </Router>
         <Footer />
       </div>
     )
-  }
-
-  componentDidMount () {
-    this.getUser()
-  }
-
-  saveUser = () => {
-    const user = this.state.user
-    localStorage.setItem('user', JSON.stringify(user))
-  }
-
-  getUser = () => {
-    const user = JSON.parse(localStorage.getItem('user'))
-    this.setState({ user })
   }
 }
 

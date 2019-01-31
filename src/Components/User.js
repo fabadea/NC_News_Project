@@ -1,30 +1,40 @@
 import React, { Component } from 'react'
 import * as api from './api'
+import { BarLoader } from 'react-css-loaders'
+import usericon from '../images/usericon.png'
+import '../Styles/Users.css'
 
 class User extends Component {
-  state = { user: {} }
+  state = { user: {}, loading: true }
   render () {
-    const { user } = this.state
-    return (
-      <div className='main'>
-        <p className='user-profile'>{user.username}'s Profile</p>
-        <p className='user-name'>Name: {user.name}</p>
-        <img src={user.avatar_url} alt='profile' className='avatar' />
+    const {
+      user: { username, name, avatar_url },
+      loading
+    } = this.state
+
+    return loading ? (
+      <BarLoader color='grey' />
+    ) : (
+      <div>
+        <div className='title'>User's profile</div>
+        <p>Username: {username}</p>
+        <p>Name: {name}</p>
+        <img src={avatar_url} alt={usericon} className='avatar' />
       </div>
     )
   }
 
   componentDidMount () {
-    console.log(this.props.username)
-    this.fetchUser(this.props.username)
+    this.getUser()
   }
 
-  fetchUser = () => {
+  getUser = () => {
+    const { author } = this.props
     api
-      .getUsers()
-      .then(users => {
+      .fetchUser(author)
+      .then(user => {
         this.setState(() => ({
-          users,
+          user,
           loading: false
         }))
       })

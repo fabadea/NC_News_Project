@@ -1,14 +1,14 @@
 import React from 'react'
-import '../Styles/App.css'
+import '../Styles/Header.css'
 import { Link } from '@reach/router'
 
 const Header = () => {
   return (
-    <div className='header'>
+    <header>
       <Link className='home' to='/'>
         Northcoders News
       </Link>
-    </div>
+    </header>
   )
 }
 

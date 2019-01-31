@@ -1,11 +1,14 @@
 import React from 'react'
-import '../Styles/App.css'
+import '../Styles/Footer.css'
+import { Link } from '@reach/router'
 
 const Footer = () => {
   return (
-    <div className='footer'>
-      <h3>some nice info here, maybe qoute genertor</h3>
-    </div>
+    <footer>
+      <Link className='home' to='/'>
+        Northcoders News
+      </Link>
+    </footer>
   )
 }
 

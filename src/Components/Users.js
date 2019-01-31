@@ -5,36 +5,32 @@ import { Link } from '@reach/router'
 import '../Styles/Users.css'
 
 class Users extends Component {
-  state = {
-    users: [],
-    loading: true
-  }
+  state = { users: {}, loading: true }
   render () {
     const { users, loading } = this.state
+
     return (
-      <div className='main'>
+      <div>
+        <div className='title'>All users: </div>
         {loading ? (
           <BarLoader color='grey' />
         ) : (
           users.map(user => (
-            <li key={user.user_id} className='user'>
-              <Link to={`/users/${user.username}`}>
-                <img src={user.avatar_url} className='avatar' />
-                {user.username}
-              </Link>
-            </li>
+            <div key={user.username} className='user'>
+              <Link to={`/users/${user.username}`}>{user.username}</Link>
+            </div>
           ))
         )}
       </div>
     )
   }
   componentDidMount () {
-    this.fetchUser()
+    this.getUser()
   }
 
-  fetchUser = () => {
+  getUser = () => {
     api
-      .getUsers()
+      .fetchUsers()
       .then(users => {
         this.setState(() => ({
           users,
