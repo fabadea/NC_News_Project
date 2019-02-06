@@ -5,10 +5,10 @@ import * as api from './api'
 class Comments extends Component {
   state = {
     comments: [],
-    loading: true
+    // loading: true
   }
   render () {
-    const { comments, loading } = this.state
+    const { comments, /*loading*/ } = this.state
     return (
       <div>
         <h4>Comments: </h4>
@@ -28,7 +28,7 @@ class Comments extends Component {
     api
       .fetchComments(id)
       .then(comments => this.setState({ comments }))
-      .catch(err => this.setState({ err, loading: false }))
+      .catch(console.log) //err => this.setState({ err, loading: false }))
   }
 }
 

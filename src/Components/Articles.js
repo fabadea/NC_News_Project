@@ -6,7 +6,8 @@ import { BarLoader } from 'react-css-loaders'
 class Articles extends Component {
   state = {
     articles: [],
-    loading: true
+    loading: true,
+    hasAllArticle: false
   }
   render () {
     const { articles, loading } = this.state
@@ -25,7 +26,7 @@ class Articles extends Component {
     this.getArticles()
   }
 
-  componentDidUpdate = prevProps => {
+  componentDidUpdate = (prevProps, prevState) => {
     if (prevProps !== this.props) {
       this.getArticles()
     }

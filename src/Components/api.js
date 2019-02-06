@@ -47,3 +47,5 @@ export const fetchTopics = () => {
     .then(res => res.data.topics)
     .catch(console.log)
 }
+
+// https://nc-news-be-flaviu.herokuapp.com/api/articles?p=4
