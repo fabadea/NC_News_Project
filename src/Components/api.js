@@ -20,9 +20,14 @@ export const fetchArticle = id => {
     .catch(console.log)
 }
 
-export const fetchComments = id => {
+export const fetchComments = (id, page = 1) => {
+  let path =
+    page === 1
+      ? `${API_URL}/articles/${id}/comments`
+      : `${API_URL}/articles/${id}/comments?p=${page}`
+
   return axios
-    .get(`${API_URL}/articles/${id}/comments`)
+    .get(path)
     .then(res => res.data.comments)
     .catch(console.log)
 }

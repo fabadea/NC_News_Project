@@ -14,13 +14,16 @@
 }
 
 
+.buttonnext:hover {
+  border: solid #cccccc 2px;
+}
 
 .buttonback {  
   width: 90px;
   height: 30px;
   background:#35424a;
   border: none;
-  border-radius: 5px;
+  border-radius: 5px; 
   position: relative;
   color:#e6e6e6;
   font-size: 15px;
@@ -30,3 +33,6 @@
 
 
 
+.buttonback:hover {
+  border: solid #cccccc 2px;
+}

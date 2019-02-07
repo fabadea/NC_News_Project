@@ -27,6 +27,7 @@ class Articles extends Component {
           <button
             className='buttonback'
             onClick={() => {
+              console.log('here')
               this.handleClick(-1)
             }}
             disabled={page === 1}
@@ -36,12 +37,15 @@ class Articles extends Component {
           <button
             className='buttonnext'
             onClick={() => {
+              console.log('here')
+
               this.handleClick(1)
             }}
             disabled={articles.length === 0}
           >
             More
           </button>
+          {/* these bottons/this form won't work if i get rid of the css (this is strange for me, and also the orange border) */}
         </form>
       </div>
     )
@@ -67,10 +71,8 @@ class Articles extends Component {
     const { topic } = this.props
     api
       .fetchArticles(topic, page)
-      .then(articles => {
-        this.setState({ articles, loading: false })
-      })
-      .catch(err => this.setState({ err }))
+      .then(articles => this.setState({ articles, loading: false }))
+      .catch(console.log)
   }
 
   handleClick = increment => {

@@ -7,7 +7,6 @@ class Auth extends Component {
   }
   render () {
     const { username } = this.state
-
     return username ? (
       this.props.children
     ) : (
@@ -24,17 +23,18 @@ class Auth extends Component {
   handleChange = event => {
     event.preventDefault()
     const username = event.target.value
+    console.log(username)
     this.setState({ username })
   }
 
   handleSubmit = event => {
     event.preventDefault()
+    const { username } = this.state
     api
       .fetchUsers()
-      .then(usernames => {
-        console.log(usernames)
-        usernames.forEach(({ username }) => {
-          if (username === this.state.username) {
+      .then(users => {
+        users.forEach(({ user }) => {
+          if (user === username) {
             this.props.setUser(username)
           }
         })
@@ -42,5 +42,7 @@ class Auth extends Component {
       .catch(console.log)
   }
 }
+
+// not working properly, can't spot the error
 
 export default Auth
