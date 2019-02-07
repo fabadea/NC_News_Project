@@ -2,9 +2,9 @@ import axios from 'axios'
 
 const API_URL = 'https://nc-news-be-flaviu.herokuapp.com/api'
 
-export const fetchArticles = topic => {
+export const fetchArticles = (topic, page = 1) => {
   let path = !topic
-    ? `${API_URL}/articles`
+    ? `${API_URL}/articles?p=${page}`
     : `${API_URL}/topics/${topic}/articles`
 
   return axios
@@ -47,5 +47,3 @@ export const fetchTopics = () => {
     .then(res => res.data.topics)
     .catch(console.log)
 }
-
-// https://nc-news-be-flaviu.herokuapp.com/api/articles?p=4

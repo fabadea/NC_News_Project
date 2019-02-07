@@ -2,50 +2,89 @@ import React, { Component } from 'react'
 import Article from './Article'
 import * as api from './api'
 import { BarLoader } from 'react-css-loaders'
+import '../Styles/Buttons.css'
 
 class Articles extends Component {
   state = {
     articles: [],
     loading: true,
-    hasAllArticle: false
+    page: 1
   }
   render () {
-    const { articles, loading } = this.state
+    const { articles, loading, page } = this.state
+
     return loading ? (
       <BarLoader color='grey' />
     ) : (
-      <p className='content'>
-        {articles.map(article => {
-          return <Article key={article.article_id} article={article} />
-        })}
-      </p>
+      <div>
+        <p className='content'>
+          {articles.map(article => {
+            return <Article key={article.article_id} article={article} />
+          })}
+        </p>
+
+        <form onSubmit={this.handleSubmit}>
+          <button
+            className='buttonback'
+            onClick={() => {
+              this.handleClick(-1)
+            }}
+            disabled={page === 1}
+          >
+            Previous
+          </button>
+          <button
+            className='buttonnext'
+            onClick={() => {
+              this.handleClick(1)
+            }}
+            disabled={articles.length === 0}
+          >
+            More
+          </button>
+        </form>
+      </div>
     )
   }
 
   componentDidMount () {
-    this.getArticles()
+    const { page } = this.state
+    this.getArticles(page)
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    if (prevProps !== this.props) {
-      this.getArticles()
+    const { topic } = this.props
+    const { page } = this.state
+    if (topic !== prevProps.topic) {
+      this.getArticles(page)
+    }
+    if (page !== prevState.page) {
+      this.getArticles(page)
     }
   }
 
-  getArticles = () => {
+  getArticles = page => {
     const { topic } = this.props
+    api
+      .fetchArticles(topic, page)
+      .then(articles => {
+        console.log(articles)
+        this.setState({ articles, loading: false })
+      })
+      .catch(err => this.setState({ err }))
+  }
 
-    if (topic) {
-      api
-        .fetchArticles(topic)
-        .then(articles => this.setState({ articles, loading: false }))
-        .catch(err => this.setState({ err, loading: false }))
-    } else {
-      api
-        .fetchArticles()
-        .then(articles => this.setState({ articles, loading: false }))
-        .catch(err => this.setState({ err, loading: false }))
-    }
+  handleClick = increment => {
+    const { page } = this.state
+    console.log(page)
+
+    this.setState({ page: page + increment })
+  }
+
+  handleSubmit = event => {
+    const { page } = this.state
+    event.preventDefault()
+    this.getArticles(page)
   }
 }
 
