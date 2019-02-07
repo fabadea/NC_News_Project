@@ -5,7 +5,7 @@ const API_URL = 'https://nc-news-be-flaviu.herokuapp.com/api'
 export const fetchArticles = (topic, page = 1) => {
   let path = !topic
     ? `${API_URL}/articles?p=${page}`
-    : `${API_URL}/topics/${topic}/articles`
+    : `${API_URL}/topics/${topic}/articles?p=${page}`
 
   return axios
     .get(path)
@@ -20,7 +20,7 @@ export const fetchArticle = id => {
     .catch(console.log)
 }
 
-export const fetchComments = (id, page = 1) => {
+export const fetchComments = (id, page) => {
   let path =
     page === 1
       ? `${API_URL}/articles/${id}/comments`
@@ -50,5 +50,15 @@ export const fetchTopics = () => {
   return axios
     .get(`${API_URL}/topics`)
     .then(res => res.data.topics)
+    .catch(console.log)
+}
+
+export const patchVotes = (article_id, comment_id, value) => {
+  const path = !comment_id
+    ? `/articles/${article_id}`
+    : `/articles/${article_id}/comments/${comment_id}`
+  return axios
+    .patch(`${API_URL}${path}`, { inc_votes: value })
+    .then(res => res.data.votes)
     .catch(console.log)
 }

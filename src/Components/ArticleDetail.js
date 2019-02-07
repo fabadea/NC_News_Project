@@ -4,6 +4,7 @@ import { BarLoader } from 'react-css-loaders'
 import { Link } from '@reach/router'
 import * as api from './api'
 import '../Styles/ArticleDetail.css'
+import Voter from './Voter'
 
 class ArticleDetail extends Component {
   state = {
@@ -16,7 +17,6 @@ class ArticleDetail extends Component {
       article: { votes, topic, title, body, author },
       loading
     } = this.state
-
     const { id } = this.props
 
     return loading ? (
@@ -25,7 +25,6 @@ class ArticleDetail extends Component {
       <div className='article_info'>
         <h4>{title}</h4>
         <p>{body}</p>
-        <p>{`this article has ${votes} votes`}</p>
         <Link to={`/users/${author}`}>
           <p className='article_user'>
             {`author: ${author}`}
@@ -37,6 +36,7 @@ class ArticleDetail extends Component {
             {`topic: ${topic}`} <br /> {`> see other articles for this topic`}
           </p>
         </Link>
+        <Voter votes={votes} />
         <Comments id={id} />
       </div>
     )
@@ -51,7 +51,7 @@ class ArticleDetail extends Component {
     api
       .fetchArticle(id)
       .then(article => this.setState({ article, loading: false }))
-      .catch(err => this.setState({ err, loading: false }))
+      .catch(console.log)
   }
 }
 

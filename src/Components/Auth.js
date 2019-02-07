@@ -12,7 +12,7 @@ class Auth extends Component {
     ) : (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label>Username</label>
+          <label>Type your username here </label>
           <input type='text' id='username' onChange={this.handleChange} />
           <button className='buttonnext'>Submit</button>
         </form>
@@ -23,7 +23,6 @@ class Auth extends Component {
   handleChange = event => {
     event.preventDefault()
     const username = event.target.value
-    console.log(username)
     this.setState({ username })
   }
 

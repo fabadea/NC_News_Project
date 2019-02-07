@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../Styles/ArticleDetail.css'
 import Moment from 'react-moment'
+import Voter from './Voter'
 
 class Comment extends Component {
   render () {
@@ -12,7 +13,7 @@ class Comment extends Component {
         <div className='cardData'>
           <div>by {author}</div>
           <Moment format='YYYY/MM/DD'>{created_at}</Moment>
-          <div>{`votes: ${votes}`}</div>
+          <Voter votes={votes} />
         </div>
       </div>
     )

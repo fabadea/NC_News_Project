@@ -17,7 +17,7 @@ class Article extends Component {
           <p>{title.toLowerCase()}</p>
           <div className='cardData'>
             <div>by {author}</div>
-            <p>{`commments: ${comment_count} votes: ${votes}`}</p>
+            <p>{`comments: ${comment_count} votes: ${votes}`}</p>
           </div>
         </div>
       </Link>

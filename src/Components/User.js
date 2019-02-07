@@ -38,7 +38,7 @@ class User extends Component {
           loading: false
         }))
       })
-      .catch(err => this.setState({ err, loading: false }))
+      .catch(console.log)
   }
 }
 

@@ -41,11 +41,11 @@ class Articles extends Component {
 
               this.handleClick(1)
             }}
-            disabled={articles.length === 0}
+            disabled={articles.length < 10}
           >
             More
           </button>
-          {/* these bottons/this form won't work if i get rid of the css (this is strange for me, and also the orange border) */}
+          {/* these bottons/this form won't work if i get rid of the css (this is strange to me, and also the orange border) */}
         </form>
       </div>
     )

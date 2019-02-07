@@ -14,7 +14,7 @@
 }
 
 
-.buttonnext:hover {
+.buttonnext:hover:enabled {
   border: solid #cccccc 2px;
 }
 
@@ -33,6 +33,6 @@
 
 
 
-.buttonback:hover {
+.buttonback:hover:enabled {
   border: solid #cccccc 2px;
 }

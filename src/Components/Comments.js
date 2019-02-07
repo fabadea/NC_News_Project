@@ -6,10 +6,9 @@ class Comments extends Component {
   state = {
     comments: [],
     page: 1
-    // loading: true
   }
   render () {
-    const { comments /* loading */, page } = this.state
+    const { comments, page } = this.state
     return (
       <div>
         <h4>Comments: </h4>
@@ -29,15 +28,13 @@ class Comments extends Component {
           <button
             className='buttonnext'
             onClick={() => {
-              console.log('here')
-
               this.handleClick(1)
             }}
             disabled={comments.length < 10}
           >
             More
           </button>
-          {/* these bottons/this form won't work if i get rid of the css (this is strange for me, and also the orange border) */}
+          {/* these bottons/this form won't work if i get rid of the css (this is strange to me, and also the orange border around the button) */}
         </form>
       </div>
     )
@@ -64,7 +61,7 @@ class Comments extends Component {
     api
       .fetchComments(id, page)
       .then(comments => this.setState({ comments }))
-      .catch(console.log) // err => this.setState({ err, loading: false }))
+      .catch(console.log)
   }
 
   handleClick = increment => {
