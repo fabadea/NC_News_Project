@@ -33,7 +33,6 @@ class Auth extends Component {
       .fetchUsers()
       .then(usernames => {
         console.log(usernames)
-
         usernames.forEach(({ username }) => {
           if (username === this.state.username) {
             this.props.setUser(username)

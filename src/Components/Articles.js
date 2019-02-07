@@ -68,7 +68,6 @@ class Articles extends Component {
     api
       .fetchArticles(topic, page)
       .then(articles => {
-        console.log(articles)
         this.setState({ articles, loading: false })
       })
       .catch(err => this.setState({ err }))
