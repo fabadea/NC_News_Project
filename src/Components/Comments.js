@@ -7,13 +7,23 @@ class Comments extends Component {
     comments: [],
     page: 1
   }
+
   render () {
+    const { id, user } = this.props
     const { comments, page } = this.state
     return (
       <div>
         <h4>Comments: </h4>
         {comments.map(comment => {
-          return <Comment key={comment.comment_id} comment={comment} />
+          return (
+            <Comment
+              key={comment.comment_id}
+              comment={comment}
+              id={id}
+              user={user}
+              deleteComment={this.deleteComment}
+            />
+          )
         })}
         <form onSubmit={this.handleSubmit}>
           <button
@@ -34,7 +44,7 @@ class Comments extends Component {
           >
             More
           </button>
-          {/* these bottons/this form won't work if i get rid of the css (this is strange to me, and also the orange border around the button) */}
+          {/* these bottons/this form won't work if i get rid of the css (this is strange to me, maibe because hover:enabled? and also the orange border around the button) */}
         </form>
       </div>
     )
@@ -73,6 +83,13 @@ class Comments extends Component {
     const { page } = this.state
     event.preventDefault()
     this.getComments(page)
+  }
+  deleteComment = idDeletedComment => {
+    this.setState(prevState => ({
+      comments: prevState.comments.filter(
+        ({ comment_id }) => comment_id !== idDeletedComment
+      )
+    }))
   }
 }
 

@@ -12,7 +12,6 @@ class NavBar extends Component {
 
   render () {
     const { topics, loading } = this.state
-
     return (
       <div className='navBar'>
         <Link className='button' to='/users'>
