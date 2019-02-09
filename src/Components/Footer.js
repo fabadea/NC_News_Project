@@ -8,6 +8,7 @@ const Footer = () => {
       <Link className='home' to='/'>
         Northcoders News
       </Link>
+      <Link to='/articles/postarticle'>Add new article</Link>
     </footer>
   )
 }

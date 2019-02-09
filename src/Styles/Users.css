@@ -1,6 +1,5 @@
 .user {
-  min-width: 2vh;
-  max-width: 12vh;
+  max-width: 15vh;
   display: flex;
   flex-direction: row;
   padding: 10px;
@@ -54,7 +53,4 @@
  min-height: 360px;
  min-width: 30;
  align-content: center
-
 } */
-
-

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from '@reach/router'
 import Article from './Article'
 import * as api from './api'
 import { BarLoader } from 'react-css-loaders'
@@ -22,12 +23,10 @@ class Articles extends Component {
             return <Article key={article.article_id} article={article} />
           })}
         </p>
-
         <form onSubmit={this.handleSubmit}>
           <button
             className='buttonback'
             onClick={() => {
-              console.log('here')
               this.handleClick(-1)
             }}
             disabled={page === 1}
@@ -37,15 +36,12 @@ class Articles extends Component {
           <button
             className='buttonnext'
             onClick={() => {
-              console.log('here')
-
               this.handleClick(1)
             }}
             disabled={articles.length < 10}
           >
             More
           </button>
-          {/* these bottons/this form won't work if i get rid of the css (this is strange to me, and also the orange border) */}
         </form>
       </div>
     )

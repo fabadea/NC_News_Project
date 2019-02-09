@@ -13,16 +13,16 @@ class Voter extends Component {
     return (
       <section className='vote'>
         <p>
-          {`the number of votes is now: ${votes + voteChange} votes.`}
+          {`the number of likes is now: ${votes + voteChange} votes.`}
           <br />
           {`> Like it?`}
         </p>
         <button onClick={() => this.updateVote(1)} disabled={voteChange > 0}>
-          Vote Up
+          Yes, I do
         </button>
 
         <button onClick={() => this.updateVote(-1)} disabled={voteChange < 0}>
-          Vote Down
+          Nope
         </button>
       </section>
     )

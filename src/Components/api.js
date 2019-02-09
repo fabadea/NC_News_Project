@@ -20,14 +20,26 @@ export const fetchArticle = id => {
     .catch(console.log)
 }
 
-export const fetchComments = (id, page) => {
-  let path =
-    page === 1
-      ? `${API_URL}/articles/${id}/comments`
-      : `${API_URL}/articles/${id}/comments?p=${page}`
+export const getCommentsByArticleId = async id => {
+  const res = await axios.get(`${API_URL}/articles/${id}/comments`)
+  return res.data.comments
+}
 
+// export const fetchComments = (id, page) => {
+//   let path =
+//     page === 1
+//       ? `${API_URL}/articles/${id}/comments`
+//       : `${API_URL}/articles/${id}/comments?p=${page}`
+
+//   return axios
+//     .get(path)
+//     .then(res => res.data.comments)
+//     .catch(console.log)
+// }
+
+export const fetchComments = id => {
   return axios
-    .get(path)
+    .get(`${API_URL}/articles/${id}/comments?limit=999999`)
     .then(res => res.data.comments)
     .catch(console.log)
 }

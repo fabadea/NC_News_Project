@@ -8,6 +8,9 @@ import ArticleDetail from './Components/ArticleDetail.js'
 import User from './Components/User.js'
 import Users from './Components/Users.js'
 import NavBar from './Components/NavBar.js'
+import NotFound from './Components/NotFound.js'
+import PostArticle from './Components/PostArticle.js'
+
 import { Router } from '@reach/router'
 import * as api from './Components/api'
 
@@ -21,15 +24,17 @@ class App extends Component {
     return (
       <div className='App'>
         <Auth users={users} setUser={this.setUser} user={user}>
-          <Header />
-          <NavBar user={user} />
+          <Header user={user} />
+          <NavBar />
           <Router>
             <Articles path='/' />
             <Articles path='/articles' />
             <Articles path='/topics/:topic' />
-            <ArticleDetail path='/articles/:id' user={user} />
+            <ArticleDetail path='/articles/:id/*' user={user} />
             <Users path='/users' />
             <User path='/users/:author' />
+            <PostArticle user={user} path='/articles/postarticle' />
+            <NotFound default />
           </Router>
           <Footer />
         </Auth>
@@ -48,19 +53,3 @@ class App extends Component {
 }
 
 export default App
-
-// As a user, I should be able to sort articles by:
-//  - date created
-//  - comment_count
-//  - votes
-// don't have it, I should fetch articles and ad a query on the link should be `....articles?sort_by${value here}` and the value should be given from user, from a list. it will be done by weekend
-
-// As a logged in user, I should be able to post a new article to an existing topic.
-// As a logged in user, I should be able to post a new article to a new topic.
-// As a logged in user, I should be able to post a new comment to an existing article.
-// don't have it, it will be done by weekend
-
-// As a logged in user, I should be able to delete my own articles. - not working properly, delete the article/comment from BE but not from FE. I can't figure out at this moment how to make a single reusable function, I should setState for both comments and articles and render after delete
-// As a logged in user, I should be able to delete my own comments.- same
-
-// error handler - don't have any

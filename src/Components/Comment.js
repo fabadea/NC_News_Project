@@ -7,7 +7,6 @@ import Deleter from './Deleter'
 class Comment extends Component {
   render () {
     const { id, user } = this.props
-    console.log(id)
     const { comment_id, body, author, created_at, votes } = this.props.comment
     return (
       <div className='article_user'>
@@ -19,15 +18,10 @@ class Comment extends Component {
           {user.username === author ? (
             <Deleter comment_id={comment_id} id={id} />
           ) : null}
-          {/* <button type='submit' onClick={this.handleDelete}>
-            delete
-          </button> */}
         </div>
       </div>
     )
   }
-
-  // handleDelete here
 }
 
 export default Comment

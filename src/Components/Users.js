@@ -10,7 +10,7 @@ class Users extends Component {
     const { users, loading } = this.state
 
     return (
-      <div>
+      <div className='usercontent'>
         <div className='title'>All users: </div>
         {loading ? (
           <BarLoader color='grey' />

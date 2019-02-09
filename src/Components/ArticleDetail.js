@@ -6,6 +6,7 @@ import * as api from './api'
 import '../Styles/ArticleDetail.css'
 import Voter from './Voter'
 import Deleter from './Deleter'
+import { Router } from '@reach/router'
 
 class ArticleDetail extends Component {
   state = {
@@ -18,7 +19,7 @@ class ArticleDetail extends Component {
       article: { article_id, votes, topic, title, body, author },
       loading
     } = this.state
-    const { id, user } = this.props
+    const { user, id } = this.props
     return loading ? (
       <BarLoader color='grey' />
     ) : (
@@ -38,7 +39,14 @@ class ArticleDetail extends Component {
         </Link>
         <Voter votes={votes} />
         {user.username === author ? <Deleter article_id={article_id} /> : null}
-        <Comments id={id} user={user} />
+        <Link to={`/articles/${id}/comments`}>
+          <button>Get Comments</button>
+          <br />
+          <br />
+        </Link>
+        <Router>
+          <Comments path='comments' user={user} />
+        </Router>
       </div>
     )
   }
