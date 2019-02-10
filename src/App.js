@@ -36,7 +36,7 @@ class App extends Component {
             <PostArticle user={user} path='/articles/postarticle' />
             <NotFound default />
           </Router>
-          <Footer />
+          <Footer user={user} />
         </Auth>
       </div>
     )

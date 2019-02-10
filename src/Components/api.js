@@ -20,6 +20,14 @@ export const fetchArticle = id => {
     .catch(console.log)
 }
 
+export const fetchArticlesByCriteria = criteria => {
+  let path = `https://nc-news-be-flaviu.herokuapp.com/api/articles?sort_by=${criteria}`
+  return axios
+    .get(path)
+    .then(res => res.data.articles)
+    .catch(console.log)
+}
+
 export const fetchComments = async id => {
   const res = await axios.get(`${API_URL}/articles/${id}/comments`)
   return res.data.comments
