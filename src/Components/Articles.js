@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from '@reach/router'
 import Article from './Article'
 import * as api from './api'
 import { BarLoader } from 'react-css-loaders'

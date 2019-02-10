@@ -75,9 +75,9 @@ export const patchVotes = (article_id, comment_id, id, value) => {
     .catch(console.log)
 }
 
-export const deleteById = (article_id, comment_id) => {
+export const deleteById = (article_id, comment_id, id) => {
   const path = !comment_id
     ? `/articles/${article_id}`
-    : `/articles/${article_id}/comments/${comment_id}`
+    : `/articles/${id}/comments/${comment_id}`
   axios.delete(`${API_URL}/${path}`)
 }
