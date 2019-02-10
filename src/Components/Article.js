@@ -14,9 +14,9 @@ class Article extends Component {
     return (
       <Link to={`/articles/${article_id}`} style={{ textDecoration: 'none' }}>
         <div className='articleCard'>
-          <p>{title.toLowerCase()}</p>
+          <div>{title.toLowerCase()}</div>
           <div className='cardData'>
-            <div>by {author}</div>
+            <p>by {author}</p>
             <p>{`comments: ${comment_count} votes: ${votes}`}</p>
           </div>
         </div>

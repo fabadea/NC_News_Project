@@ -18,11 +18,11 @@ class Articles extends Component {
       <BarLoader color='grey' />
     ) : (
       <div>
-        <p className='content'>
+        <div className='content'>
           {articles.map(article => {
             return <Article key={article.article_id} article={article} />
           })}
-        </p>
+        </div>
         <form onSubmit={this.handleSubmit}>
           <button
             className='buttonback'
@@ -38,7 +38,7 @@ class Articles extends Component {
             onClick={() => {
               this.handleClick(1)
             }}
-            disabled={articles.length < 10}
+            disabled={articles.length === 0}
           >
             More
           </button>
@@ -73,8 +73,6 @@ class Articles extends Component {
 
   handleClick = increment => {
     const { page } = this.state
-    console.log(page)
-
     this.setState({ page: page + increment })
   }
 

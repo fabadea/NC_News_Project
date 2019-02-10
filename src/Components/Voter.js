@@ -29,8 +29,9 @@ class Voter extends Component {
   }
 
   updateVote = value => {
-    const { article_id, comment_id } = this.props
-    api.patchVotes(article_id, comment_id, value)
+    const { article_id, comment_id, id } = this.props
+    console.log(comment_id)
+    api.patchVotes(article_id, comment_id, id, value)
     this.setState(({ voteChange }) => ({
       voteChange: voteChange + value
     }))

@@ -20,7 +20,7 @@ export const fetchArticle = id => {
     .catch(console.log)
 }
 
-export const getCommentsByArticleId = async id => {
+export const fetchComments = async id => {
   const res = await axios.get(`${API_URL}/articles/${id}/comments`)
   return res.data.comments
 }
@@ -37,12 +37,12 @@ export const getCommentsByArticleId = async id => {
 //     .catch(console.log)
 // }
 
-export const fetchComments = id => {
-  return axios
-    .get(`${API_URL}/articles/${id}/comments?limit=999999`)
-    .then(res => res.data.comments)
-    .catch(console.log)
-}
+// export const fetchComments = id => {
+//   return axios
+//     .get(`${API_URL}/articles/${id}/comments?limit=999999`)
+//     .then(res => res.data.comments)
+//     .catch(console.log)
+// }
 
 export const fetchUsers = () => {
   return axios
@@ -65,10 +65,10 @@ export const fetchTopics = () => {
     .catch(console.log)
 }
 
-export const patchVotes = (article_id, comment_id, value) => {
+export const patchVotes = (article_id, comment_id, id, value) => {
   const path = !comment_id
     ? `/articles/${article_id}`
-    : `/articles/${article_id}/comments/${comment_id}`
+    : `/articles/${id}/comments/${comment_id}`
   return axios
     .patch(`${API_URL}${path}`, { inc_votes: value })
     .then(res => res.data.votes)
@@ -79,5 +79,5 @@ export const deleteById = (article_id, comment_id) => {
   const path = !comment_id
     ? `/articles/${article_id}`
     : `/articles/${article_id}/comments/${comment_id}`
-  axios.delete(`${API_URL}/${path}`).catch(console.log)
+  axios.delete(`${API_URL}/${path}`)
 }
