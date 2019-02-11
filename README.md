@@ -24,7 +24,7 @@ npm install -D
 
 Running App
 
-run following command in integrated terminal.
+Run following command in integrated terminal.
 npm run start
 
 Technology
