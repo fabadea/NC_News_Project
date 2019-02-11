@@ -13,7 +13,6 @@ class Footer extends Component {
   render () {
     const { user } = this.props
     const { article } = this.state
-    console.log(article)
     return (
       <footer>
         <label>
