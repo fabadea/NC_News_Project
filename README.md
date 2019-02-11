@@ -15,20 +15,24 @@ To get started localy on your station: Clone this repo from Github
 git clone https://github.com/fabadea/nc_news_project.git
 
 Installing
+
 In integrated terminal run following commands to install dependencies:
 npm install
 
-run following command to install dev dependencies
+Run following command to install dev dependencies:
 npm install -D
 
 Running App
+
 run following command in integrated terminal.
 npm run start
 
 Technology
+
 React
 Reach-Router
 Axios
 
 Acknowledgments
+
 Northcoders has given me the knowledge & support to make this project.
