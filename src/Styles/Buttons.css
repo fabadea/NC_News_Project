@@ -1,24 +1,35 @@
- .buttonnext {
-  width: 90px;
-  height: 30px;
+ 
+ .buttons{
+  display: flex;
+  justify-content: center
+ }
+
+
+ .button {
+  width: 8vh;
+  height: 2.5vh;
   background:#35424a;
   border: none;
   border-radius: 5px;
-  position: relative;
   color:#e6e6e6;
-  font-size: 15px;
+  font-size: 1.5vh;
   text-align: center;
   box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2);
-  margin: 10px 10px 10px 50px
-
+  margin: 1vh 1vh 3vh 1vh
 }
 
 
-.buttonnext:hover:enabled {
+.button:hover:enabled {
   border: solid #cccccc 2px;
 }
 
-.buttonback {  
+
+option{
+  font-size: 2vh;
+  color: #35424a;
+}
+
+/* .buttonback {  
   width: 90px;
   height: 30px;
   background:#35424a;
@@ -35,4 +46,5 @@
 
 .buttonback:hover:enabled {
   border: solid #cccccc 2px;
-}
+} */
+

@@ -3,6 +3,7 @@ import { BarLoader } from 'react-css-loaders'
 import * as api from './api'
 import { Link } from '@reach/router'
 import '../Styles/Users.css'
+import '../Styles/Auth.css'
 
 class Users extends Component {
   state = { users: {}, loading: true }
@@ -11,12 +12,12 @@ class Users extends Component {
 
     return (
       <div className='usercontent'>
-        <div className='title'>All users: </div>
+        <div className='title'>All the users: </div>
         {loading ? (
           <BarLoader color='grey' />
         ) : (
           users.map(user => (
-            <div key={user.username} className='user'>
+            <div key={user.username} className='user_first_page'>
               <Link to={`/users/${user.username}`}>{user.username}</Link>
             </div>
           ))

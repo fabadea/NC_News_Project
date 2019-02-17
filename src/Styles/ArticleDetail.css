@@ -18,17 +18,23 @@
   border: solid rgb(206, 206, 206) 3px;
   margin: 10px;
   color: rgb(66, 66, 66);
-  font-size: 16px;
+  font-size: 2vh;
 }
 
 h4{
-  font-size: 20px;
+  font-size: 3vh;
+  text-align: center;
   color: rgb(255, 60, 0);
 }
 
 .article_info{
-  padding: 5vh
+  padding: 2vh
 }
+
+.article_info p {
+  font-size: 1.5vh;
+}
+
 .article_user a:link {
   text-decoration: none;
 }

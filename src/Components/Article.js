@@ -13,11 +13,11 @@ class Article extends Component {
     } = this.props.article
     return (
       <Link to={`/articles/${article_id}`} style={{ textDecoration: 'none' }}>
-        <div className='articleCard'>
-          <div>{title.toLowerCase()}</div>
-          <div className='cardData'>
+        <div className='article_card'>
+          <div className='article_title'>{title.toLowerCase()}</div>
+          <div className='card_data'>
             <p>by {author}</p>
-            <p>{`comments: ${comment_count} votes: ${votes}`}</p>
+            <p> {` ,comments: ${comment_count} votes: ${votes}`}</p>
           </div>
         </div>
       </Link>

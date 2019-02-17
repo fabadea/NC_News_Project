@@ -11,7 +11,6 @@ class Comment extends Component {
   render () {
     const { user, id } = this.props
     const { comment_id, body, author, created_at, votes } = this.props.comment
-
     return (
       <div className='article_user'>
         <p>{body}</p>
@@ -23,7 +22,7 @@ class Comment extends Component {
             <Deleter comment_id={comment_id} id={id} />
           ) : null} */}
           {user.username === author ? (
-            <button type='button' onClick={this.deleteArticle}>
+            <button type='button' onClick={this.deleteComment}>
               delete
             </button>
           ) : null}
@@ -31,14 +30,15 @@ class Comment extends Component {
       </div>
     )
   }
-  deleteArticle = () => {
+
+  deleteComment = () => {
     const { id } = this.props
     const { comment_id } = this.props.comment
     axios
       .delete(
         `https://nc-news-be-flaviu.herokuapp.com/api/articles/${id}/comments/${comment_id}`
       )
-      .then(() => navigate(`/articles/${id}`))
+      .then(() => this.props.handleCommentDelete(comment_id))
   }
 }
 

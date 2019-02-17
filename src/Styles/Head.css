@@ -1,0 +1,124 @@
+header{
+ display: flex;
+ flex-direction: column;
+ background-color: rgba(53, 66, 74, 0.4);
+ text-align: center;
+ min-width: 100%;
+}
+
+header p{
+    color: #35424a;
+    
+}
+
+header a:hover{
+ color:#cccccc;
+}
+
+.home{
+ color:#35424a;
+ font-size: 5vh;
+ text-decoration: none;
+ padding:2vh;
+}
+
+.header_utils {
+  background-color: rgba(53, 66, 74, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1vh 3vh 1vh 3vh ;
+    
+}
+
+
+.header_utils .header_button {
+  text-decoration: none;
+  color: #35424a;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 2.5vh;
+  padding: 0.5vh;
+  border: rgba(255,192,203,1) solid 0.6vh;
+  border-radius: 0.6vh;
+
+}
+
+.header_utils .header_button:hover {
+  color: rgba(255,192,203,1);
+  transition-duration: 0.3s;
+}
+
+.username {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.userDetails p {
+    margin: 0.2vh;
+    font-size: 2vh;
+    padding: 0.5vh 1vh 0.5vh 1vh ;
+    color: rgba(255,192,203,1)
+
+}
+
+
+.user_name{
+  color: #35424a;
+  font-size: 1.8vh;
+  /* border: 1vh solid rgba(255,192,203,1); */
+  
+}
+
+ .logout {
+  width: 9vh;
+  height: 2.6vh;
+  background:#35424a;
+  border-radius: 2vh;
+  color:#e6e6e6;
+  font-size: 2vh;
+  text-align: center;
+  text-decoration: none;
+  /* border: 1vh solid rgba(255,192,203,1); */
+
+
+}
+
+
+
+
+
+
+ @media all and (max-width: 500px) {
+    .header_utils .header_button {
+        font-size: 13px;
+        width: 10vw;
+    }
+    .username {
+        font-size: 10px;
+        width: 25vw;
+    }
+    .userDetails p {
+        margin: 0px;
+    }
+}
+
+@media all and (max-width: 375px) {
+    .header_utils .header_button{
+        font-size: 12px;
+    }
+    .header_utils .header_button {
+        width: 12vw;
+    }
+    /* .username {
+        font-size: 10px;
+        width: 25vw;
+    } */
+    .username {
+        display: none;
+    }
+} 

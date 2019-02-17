@@ -1,0 +1,102 @@
+.first_page{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  background:  #e6e6e6;
+  height: 100%;
+
+}
+
+.first_page_msg{
+  display:flex;
+  text-align: center;
+  justify-content: center;
+  font-size: 400%;
+  color:#e6e6e6;
+  background:#35424a;
+  padding: 6vh;
+
+}
+
+.msg {
+  display:flex;
+  justify-content: center;
+  color:#35424a;
+  font-size: 2vh;
+  margin: 3vh;
+}
+
+.user_input_form{
+  display:flex;
+  flex-direction: column;
+
+  padding: 5% 20% 20% 20%;
+}
+
+
+
+.login_form{
+ display:flex;
+ justify-content: center;
+ font-size:3vh;
+text-align: center;
+
+}
+
+
+ .button_submit_user {
+  display:flex;
+  justify-content: center;
+  text-align: center;
+  width: 40hv;
+  height: 10vh;
+  background:#35424a;
+  border: none;
+  border-radius: 5vh;
+  color:#e6e6e6;
+  font-size: 300%;
+  margin: 5vh 10vh 5vh 10vh
+
+}
+
+
+
+.button_submit_user:hover:enabled {
+  border: solid #cccccc;
+}
+
+.usercontent{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+}
+
+.title{
+  font-size: 2.5vh;
+  color:#35424a;
+}
+.user_first_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1vh;
+  border-radius: 10%;
+  border: solid rgb(206, 206, 206) 3px;
+  margin: 0.5vh;
+  color: rgb(66, 66, 66);
+  font-size: 2vh;
+  min-width: 30%;
+}
+
+
+.user_first_page a:link {
+  text-decoration: none;
+  color: rgb(255, 60, 0);
+}
+
+.user_first_page a:visited {
+  text-decoration: none;
+  color: #777777;
+}

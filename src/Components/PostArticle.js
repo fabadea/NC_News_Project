@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { navigate } from '@reach/router'
 import * as api from './api'
+import '../Styles/Topics.css'
 
 class PostArticle extends Component {
   state = {
@@ -14,45 +15,63 @@ class PostArticle extends Component {
   render () {
     const { topics, newArticleBody, newArticleTitle } = this.state
     return (
-      <div key={'newArticlePage'}>
-        <h4>You can post a new article here</h4>
-        <div key={'addNewArticle'}>
-          <label>Chose topic:</label>
-          <br />
-          <select onChange={this.topicChange}>
-            <option selected disabled>
-              topic
-            </option>
-            {topics &&
-              topics.map(topic => {
-                return (
-                  <option key={topic.slug} value={topic.slug}>
-                    {topic.slug}
-                  </option>
-                )
-              })}
-          </select>
+      <div className='postArticle_container'>
+        <form onSubmit={this.postNewArticle}>
+          <div className='row'>
+            <div className='col-25'>
+              <label>Topic</label>
+            </div>
+            <div className='col-75'>
+              <select onChange={this.topicChange}>
+                <option selected disabled>
+                  topic
+                </option>
+                {topics &&
+                  topics.map(topic => {
+                    return (
+                      <option key={topic.slug} value={topic.slug}>
+                        {topic.slug}
+                      </option>
+                    )
+                  })}
+              </select>
+            </div>
+          </div>
 
-          <form className='content' onSubmit={this.postNewArticle}>
-            <input
-              placeholder='title'
-              type='text'
-              onChange={this.handleChange}
-              value={newArticleTitle}
-              id={'newArticleTitle'}
-            />
-            <input
-              placeholder='article body'
-              type='text'
-              onChange={this.handleChange}
-              value={newArticleBody}
-              id={'newArticleBody'}
-            />
-            <button type='submit' className='buttonnext'>
-              Submit
-            </button>
-          </form>
-        </div>
+          <div className='row'>
+            <div className='col-25'>
+              <label>Title</label>
+            </div>
+            <div class='col-75'>
+              <input
+                placeholder='title'
+                type='text'
+                onChange={this.handleChange}
+                value={newArticleTitle}
+                id={'newArticleTitle'}
+              />
+            </div>
+          </div>
+
+          <div className='row'>
+            <div className='col-25'>
+              <label>Body</label>
+            </div>
+
+            <div class='col-75'>
+              <textarea
+                placeholder='article body'
+                type='text'
+                onChange={this.handleChange}
+                value={newArticleBody}
+                id={'newArticleBody'}
+              />
+              <button type='submit' className='button_topic_art'>
+                submit
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     )
   }

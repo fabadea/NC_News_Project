@@ -1,38 +1,64 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Users from './Users'
+import '../Styles/Auth.css'
 
 class Auth extends Component {
   state = {
     input: '',
+    noInput: false,
     hasError: false
   }
   render () {
     const { user, children } = this.props
-    const { hasError } = this.state
-    if (user) {
-      return children
-    } else {
-      const { input } = this.state
-      return (
-        <div className='content'>
-          <h4>Starving for some news? Login first</h4>
-          <p>Use one of users provided bellow and login</p>
-          {hasError && <h4>Try again with one of provided username</h4>}
-          <form className='content' onSubmit={this.handleSubmit}>
-            <input
-              onChange={this.handleChange}
-              placeholder='username here'
-              type='text'
-              value={input}
-            />
-            <button type='submit' className='buttonnext'>
-              submit
-            </button>
-            <Users />
-          </form>
+    const { input, hasError } = this.state
+    return user && user.username ? (
+      children
+    ) : (
+      <div className='first_page'>
+        <div className='first_page_msg'>
+          Starving for some news?
+          <br />
+          Login first
         </div>
-      )
+        <p className='msg'>Use one of the users provided bellow and login</p>
+        {hasError && (
+          <p className='msg'>Try again with one of provided username</p>
+        )}
+        <form className='user_input_form' onSubmit={this.handleSubmit}>
+          <input
+            className='login_form'
+            onChange={this.handleChange}
+            placeholder='username here'
+            type='text'
+            value={input}
+          />
+          <button type='submit' className='button_submit_user'>
+            login
+          </button>
+          <Users />
+        </form>
+      </div>
+    )
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+    const { input } = this.state
+    if (input.length < 1) {
+      this.setState({ noInput: true, hasError: false })
+    } else {
+      axios
+        .get(`https://nc-news-be-flaviu.herokuapp.com/api/users/${input}`)
+        .then(({ data }) => {
+          this.props.login(data)
+        })
+        .then(() => {
+          this.setState({ input: '', hasError: false, noInput: false })
+        })
+        .catch(err => {
+          this.setState({ hasError: true, noInput: false })
+        })
     }
   }
 
@@ -41,26 +67,6 @@ class Auth extends Component {
     this.setState({
       input: value
     })
-  }
-
-  handleSubmit = e => {
-    e.preventDefault()
-    const { input } = this.state
-    axios
-      .get(`https://nc-news-be-flaviu.herokuapp.com/api/users/${input}`)
-      .then(({ data }) => {
-        if (data) {
-          this.props.setUser(input)
-          this.setState({
-            input: ''
-          })
-        }
-      })
-      .catch(err => {
-        this.setState({
-          hasError: true
-        })
-      })
   }
 }
 

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import Comments from './Comments'
+import Comment from './Comment'
 import { BarLoader } from 'react-css-loaders'
 import { Link } from '@reach/router'
 import * as api from './api'
 import '../Styles/ArticleDetail.css'
 import Voter from './Voter'
+
 // import Deleter from './Deleter'
-import { Router } from '@reach/router'
 import axios from 'axios'
 import ArticleNotFound from './ArticleNotFound'
 import { navigate } from '@reach/router'
@@ -25,11 +25,11 @@ class ArticleDetail extends Component {
       article: { votes, topic, title, body, author },
       loading,
       newComment,
-      hasError
+      hasError,
+      comments
     } = this.state
     const { user, id } = this.props
     if (hasError) return <ArticleNotFound />
-
     return loading ? (
       <BarLoader color='grey' />
     ) : (
@@ -47,10 +47,7 @@ class ArticleDetail extends Component {
             {`topic: ${topic}`} <br /> {`> see other articles for this topic`}
           </p>
         </Link>
-        <form className='article_info' onSubmit={this.postNewComment}>
-          <input onChange={this.handleChange} type='text' value={newComment} />
-          <button type='sumbit'>submit comment</button>
-        </form>
+
         <Voter votes={votes} article_id={id} />
         {/* {user.username === author ? <Deleter article_id={article_id} /> : null} */}
         {user.username === author ? (
@@ -58,15 +55,31 @@ class ArticleDetail extends Component {
             delete
           </button>
         ) : null}
-
-        <Link to={`/articles/${id}/comments`}>
-          <button>Get Comments</button>
-          <br />
-          <br />
-        </Link>
-        <Router>
-          <Comments path='comments' user={user} />
-        </Router>
+        <div>
+          <h4>Comments: </h4>
+          <form onSubmit={this.postNewComment}>
+            <input
+              required
+              onChange={this.handleChange}
+              type='text'
+              value={newComment}
+            />
+            <button type='sumbit'>submit new comment</button>
+          </form>
+          {comments &&
+            comments.map(comment => {
+              return (
+                <Comment
+                  key={comment.comment_id}
+                  comment={comment}
+                  id={id}
+                  user={this.props.user}
+                  commentFunc={this.getComments}
+                  handleCommentDelete={this.handleCommentDelete}
+                />
+              )
+            })}
+        </div>
       </div>
     )
   }
@@ -81,8 +94,13 @@ class ArticleDetail extends Component {
     api
       .fetchArticle(id)
       .then(article => this.setState({ article, loading: false }))
-      .catch(console.log)
+      .catch(err => {
+        this.setState({
+          hasError: true
+        })
+      })
   }
+
   getComments = () => {
     const { id } = this.props
     axios
@@ -105,23 +123,21 @@ class ArticleDetail extends Component {
   postNewComment = e => {
     e.preventDefault()
     const { id } = this.props
-    const { newComment, comments } = this.state
-    const username = this.props.user.username
+    const { newComment } = this.state
+    const username = this.props.user
     const body = { body: newComment, username }
-    if (newComment) {
-      axios
-        .post(
-          `https://nc-news-be-flaviu.herokuapp.com/api/articles/${id}/comments`,
-          body
-        )
-        .then(({ data }) => {
-          this.setState({
-            comments: [data.comment, ...comments],
-            newComment: ''
-          })
+    axios
+      .post(
+        `https://nc-news-be-flaviu.herokuapp.com/api/articles/${id}/comments`,
+        body
+      )
+      .then(({ data }) => {
+        this.setState({
+          comments: [data.comment, ...this.state.comments],
+          newComment: ''
         })
-        .then(() => navigate(`/articles/${id}/comments`))
-    }
+      })
+      .then()
   }
 
   deleteArticle = () => {
@@ -129,6 +145,15 @@ class ArticleDetail extends Component {
     axios
       .delete(`https://nc-news-be-flaviu.herokuapp.com/api/articles/${id}`)
       .then(() => navigate('/articles'))
+  }
+
+  handleCommentDelete = id => {
+    const comments = this.state.comments.filter(comment => {
+      return comment.comment_id !== id
+    })
+    this.setState({
+      comments: comments
+    })
   }
 }
 

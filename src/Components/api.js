@@ -13,6 +13,13 @@ export const fetchArticles = (topic, page = 1) => {
     .catch(console.log)
 }
 
+// export const fetchArticles = async (topic, options) => {
+//   const { isASC, criteria, page } = options
+//   const URL = `${API_URL}topics/${topic}/articles?criteria=${criteria}&&p=${page}&&sort_ascending=${isASC}`
+//   const { data } = await axios.get(URL)
+//   return data
+// }
+
 export const fetchArticle = id => {
   return axios
     .get(`${API_URL}/articles/${id}`)
@@ -20,35 +27,10 @@ export const fetchArticle = id => {
     .catch(console.log)
 }
 
-export const fetchArticlesByCriteria = criteria => {
-  let path = `https://nc-news-be-flaviu.herokuapp.com/api/articles?sort_by=${criteria}`
-  return axios
-    .get(path)
-    .then(res => res.data.articles)
-    .catch(console.log)
-}
-
-export const fetchComments = async id => {
-  const res = await axios.get(`${API_URL}/articles/${id}/comments`)
-  return res.data.comments
-}
-
-// export const fetchComments = (id, page) => {
-//   let path =
-//     page === 1
-//       ? `${API_URL}/articles/${id}/comments`
-//       : `${API_URL}/articles/${id}/comments?p=${page}`
-
+// export const fetchArticlesByCriteria = criteria => {
 //   return axios
-//     .get(path)
-//     .then(res => res.data.comments)
-//     .catch(console.log)
-// }
-
-// export const fetchComments = id => {
-//   return axios
-//     .get(`${API_URL}/articles/${id}/comments?limit=999999`)
-//     .then(res => res.data.comments)
+//     .get(`${API_URL}/articles?sort_by=${criteria}`)
+//     .then(res => res.data.articles)
 //     .catch(console.log)
 // }
 
@@ -88,4 +70,15 @@ export const deleteById = (article_id, comment_id, id) => {
     ? `/articles/${article_id}`
     : `/articles/${id}/comments/${comment_id}`
   axios.delete(`${API_URL}/${path}`)
+}
+
+export const fetchTopBy = async () => {
+  const URL = `${API_URL}/articles?limit=5&sort_by=comment_count`
+  const { data } = await axios.get(URL)
+  return data
+}
+
+export const postNewTopic = async post => {
+  const { data } = await axios.post(`${API_URL}topics`, post)
+  return data
 }

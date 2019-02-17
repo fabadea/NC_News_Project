@@ -3,6 +3,7 @@ import Article from './Article'
 import * as api from './api'
 import { BarLoader } from 'react-css-loaders'
 import '../Styles/Buttons.css'
+import axios from 'axios'
 
 class Articles extends Component {
   state = {
@@ -12,19 +13,35 @@ class Articles extends Component {
   }
   render () {
     const { articles, loading, page } = this.state
-
     return loading ? (
       <BarLoader color='grey' />
     ) : (
       <div>
         <div className='content'>
+          <label>
+            Sort by:
+            <select onChange={this.assignSortBy}>
+              <option key={'disabled'} value={null} defaultValue disabled>
+                Choose sort criteria
+              </option>
+              <option value='created_at'>Date created</option>
+              <option value='comment_count'>Comment count</option>
+              <option value='votes'>Votes</option>
+            </select>
+          </label>
           {articles.map(article => {
-            return <Article key={article.article_id} article={article} />
+            return (
+              <Article
+                key={article.article_id}
+                article={article}
+                className='article_card'
+              />
+            )
           })}
         </div>
-        <form onSubmit={this.handleSubmit}>
+        <form className='buttons' onSubmit={this.handleSubmit}>
           <button
-            className='buttonback'
+            className='button'
             onClick={() => {
               this.handleClick(-1)
             }}
@@ -33,7 +50,7 @@ class Articles extends Component {
             Previous
           </button>
           <button
-            className='buttonnext'
+            className='button'
             onClick={() => {
               this.handleClick(1)
             }}
@@ -79,6 +96,25 @@ class Articles extends Component {
     const { page } = this.state
     event.preventDefault()
     this.getArticles(page)
+  }
+  assignSortBy = e => {
+    this.setState(
+      {
+        criteria: e.target.value
+      },
+      () => this.sortArticles()
+    )
+  }
+
+  sortArticles = () => {
+    const { criteria } = this.state
+    let url = `https://nc-news-be-flaviu.herokuapp.com/api/articles?sort_by=${criteria}`
+
+    axios.get(url).then(({ data }) => {
+      this.setState({
+        articles: data.articles
+      })
+    })
   }
 }
 
