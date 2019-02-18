@@ -27,6 +27,10 @@ export const fetchArticle = id => {
     .catch(console.log)
 }
 
+export const getCommentsByArticleId = async articleId =>
+  (await axios.get(`${API_URL}/articles/${articleId}/comments?limit=50`)).data
+    .comments
+
 // export const fetchArticlesByCriteria = criteria => {
 //   return axios
 //     .get(`${API_URL}/articles?sort_by=${criteria}`)

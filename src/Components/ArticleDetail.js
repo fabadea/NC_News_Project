@@ -74,7 +74,6 @@ class ArticleDetail extends Component {
                   comment={comment}
                   id={id}
                   user={this.props.user}
-                  commentFunc={this.getComments}
                   handleCommentDelete={this.handleCommentDelete}
                 />
               )
@@ -84,9 +83,23 @@ class ArticleDetail extends Component {
     )
   }
 
-  componentDidMount () {
-    this.getArticle()
-    this.getComments()
+  // componentDidMount () {
+  //   this.getArticle()
+  //   this.getComments()
+  // }
+
+  componentDidMount = () => {
+    const { id } = this.props
+    this.setState({ loading: true })
+    api
+      .fetchArticle(id)
+      .then(async article => {
+        const comments = await api.getCommentsByArticleId(id)
+        this.setState({ article, comments, loading: false })
+      })
+      .catch(err => {
+        this.setState({ hasError: true })
+      })
   }
 
   getArticle = () => {
@@ -101,18 +114,18 @@ class ArticleDetail extends Component {
       })
   }
 
-  getComments = () => {
-    const { id } = this.props
-    axios
-      .get(
-        `https://nc-news-be-flaviu.herokuapp.com/api/articles/${id}/comments`
-      )
-      .then(({ data }) => {
-        this.setState({
-          comments: data.comments
-        })
-      })
-  }
+  // getComments = () => {
+  //   const { id } = this.props
+  //   axios
+  //     .get(
+  //       `https://nc-news-be-flaviu.herokuapp.com/api/articles/${id}/comments`
+  //     )
+  //     .then(({ data }) => {
+  //       this.setState({
+  //         comments: data.comments
+  //       })
+  //     })
+  // }
 
   handleChange = e => {
     this.setState({
@@ -124,20 +137,21 @@ class ArticleDetail extends Component {
     e.preventDefault()
     const { id } = this.props
     const { newComment } = this.state
-    const username = this.props.user
+    const username = this.props.user.username
     const body = { body: newComment, username }
-    axios
-      .post(
-        `https://nc-news-be-flaviu.herokuapp.com/api/articles/${id}/comments`,
-        body
-      )
-      .then(({ data }) => {
-        this.setState({
-          comments: [data.comment, ...this.state.comments],
-          newComment: ''
+    if (newComment) {
+      axios
+        .post(
+          `https://nc-news-be-flaviu.herokuapp.com/api/articles/${id}/comments`,
+          body
+        )
+        .then(({ data }) => {
+          this.setState({
+            comments: [data.comment, ...this.state.comments],
+            newComment: ''
+          })
         })
-      })
-      .then()
+    }
   }
 
   deleteArticle = () => {

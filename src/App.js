@@ -29,7 +29,6 @@ class App extends Component {
   }
   render () {
     const { user, users } = this.state
-    console.log(user)
 
     return (
       <Auth users={users} login={this.login} user={user}>
@@ -44,7 +43,7 @@ class App extends Component {
                 <Articles path='/articles' />
                 <Articles path='/topics/:topic' />
                 <PostArticle path='/postarticle' user={user} />
-                <ArticleDetail path='/articles/:id' user={user} />
+                <ArticleDetail path='/articles/:id/*' user={user} />
                 <Users path='/users' />
                 <User path='/users/:author' />
                 <NotFound default />

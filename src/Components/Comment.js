@@ -7,21 +7,35 @@ import axios from 'axios'
 import { navigate } from '@reach/router'
 
 class Comment extends Component {
-  state = {}
+  state = {
+    comment: {}
+  }
   render () {
     const { user, id } = this.props
-    const { comment_id, body, author, created_at, votes } = this.props.comment
+    const { comment } = this.state
+    // const {
+    //   comments: comment_id,
+    //   body,
+    //   author,
+    //   created_at,
+    //   votes
+    // } = this.props.comment
+    console.log(comment)
     return (
       <div className='article_user'>
-        <p>{body}</p>
+        <p>{comment.body}</p>
         <div className='cardData'>
-          <div>by {author}</div>
-          <Moment format='YYYY/MM/DD'>{created_at}</Moment>
-          <Voter votes={votes} comment_id={comment_id} id={id} />
+          <div>by {comment.author}</div>
+          <Moment format='YYYY/MM/DD'>{comment.created_at}</Moment>
+          <Voter
+            votes={comment.votes}
+            comment_id={comment.comment_id}
+            id={id}
+          />
           {/* {user.username === author ? (
             <Deleter comment_id={comment_id} id={id} />
           ) : null} */}
-          {user.username === author ? (
+          {user.username === comment.author ? (
             <button type='button' onClick={this.deleteComment}>
               delete
             </button>
@@ -29,6 +43,12 @@ class Comment extends Component {
         </div>
       </div>
     )
+  }
+
+  componentDidMount () {
+    this.setState({
+      comment: this.props.comment
+    })
   }
 
   deleteComment = () => {
