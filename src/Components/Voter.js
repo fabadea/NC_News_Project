@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import * as api from './api'
+import { FaThumbsUp, FaThumbsDown } from 'react-icons/lib/fa'
+import '../Styles/Voter.css'
 
 class Voter extends Component {
   state = {
@@ -17,13 +19,29 @@ class Voter extends Component {
           <br />
           {`> Like it?`}
         </p>
-        <button onClick={() => this.updateVote(1)} disabled={voteChange > 0}>
-          Yes, I do
-        </button>
+        <div className='votebutton_parent'>
+          <button
+            className='votebutton'
+            onClick={() => this.updateVote(1)}
+            disabled={voteChange > 0}
+          >
+            Yes{'  '}
+            <FaThumbsUp
+              style={{ fontSize: '3vh', color: 'rgb(102, 120, 255)' }}
+            />
+          </button>
 
-        <button onClick={() => this.updateVote(-1)} disabled={voteChange < 0}>
-          Nope
-        </button>
+          <button
+            className='votebutton'
+            onClick={() => this.updateVote(-1)}
+            disabled={voteChange < 0}
+          >
+            No{'  '}
+            <FaThumbsDown
+              style={{ fontSize: '3vh', color: 'rgb(223, 117, 250)' }}
+            />
+          </button>
+        </div>
       </section>
     )
   }

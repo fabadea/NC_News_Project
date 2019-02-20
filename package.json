@@ -10,6 +10,7 @@
     "react-css-loaders": "0.0.5",
     "react-dom": "^16.8.1",
     "react-holy-grail-layout": "^0.1.5",
+    "react-icons": "^2.2.7",
     "react-moment": "^0.8.4",
     "react-scripts": "2.1.5"
   },

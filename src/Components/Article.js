@@ -12,7 +12,10 @@ class Article extends Component {
       votes
     } = this.props.article
     return (
-      <Link to={`/articles/${article_id}`} style={{ textDecoration: 'none' }}>
+      <Link
+        to={`/articles/${article_id}`}
+        style={{ textDecoration: 'none', margin: '0.3vh' }}
+      >
         <div className='article_card'>
           <div className='article_title'>{title.toLowerCase()}</div>
           <div className='card_data'>

@@ -5,11 +5,11 @@ import { Link } from '@reach/router'
 import * as api from './api'
 import '../Styles/ArticleDetail.css'
 import Voter from './Voter'
-
 // import Deleter from './Deleter'
 import axios from 'axios'
 import ArticleNotFound from './ArticleNotFound'
 import { navigate } from '@reach/router'
+import { FaExclamationCircle } from 'react-icons/lib/fa'
 
 class ArticleDetail extends Component {
   state = {
@@ -34,14 +34,26 @@ class ArticleDetail extends Component {
       <BarLoader color='grey' />
     ) : (
       <div className='article_info'>
-        <h4>{title}</h4>
-        <p>{body}</p>
-        <Link to={`/users/${author}`}>
-          <p className='article_user'>
-            {`author: ${author}`}
-            <br /> {`> see user's details`}
+        <h4 className='art_title'>{title}</h4>
+        <p className='art_body'>{body}</p>
+        <div className='article_user'>
+          <Link to={`/users/${author}`}>
+            <p>
+              {`author: ${author}`}
+              <br /> {`> see user's details`}
+            </p>
+          </Link>
+          <p>
+            {user.username === author ? (
+              <button className='votebutton' onClick={this.deleteArticle}>
+                delete
+                <FaExclamationCircle
+                  style={{ fontSize: '3vh', color: 'red' }}
+                />
+              </button>
+            ) : null}
           </p>
-        </Link>
+        </div>
         <Link to={`/topics/${topic}`}>
           <p className='article_user'>
             {`topic: ${topic}`} <br /> {`> see other articles for this topic`}
@@ -50,11 +62,7 @@ class ArticleDetail extends Component {
 
         <Voter votes={votes} article_id={id} />
         {/* {user.username === author ? <Deleter article_id={article_id} /> : null} */}
-        {user.username === author ? (
-          <button type='button' onClick={this.deleteArticle}>
-            delete
-          </button>
-        ) : null}
+
         <div>
           <h4>Comments: </h4>
           <form onSubmit={this.postNewComment}>
@@ -70,7 +78,7 @@ class ArticleDetail extends Component {
             comments.map(comment => {
               return (
                 <Comment
-                  key={comment.comment_id}
+                  // key={comment.comment_id}
                   comment={comment}
                   id={id}
                   user={this.props.user}
@@ -83,23 +91,9 @@ class ArticleDetail extends Component {
     )
   }
 
-  // componentDidMount () {
-  //   this.getArticle()
-  //   this.getComments()
-  // }
-
-  componentDidMount = () => {
-    const { id } = this.props
-    this.setState({ loading: true })
-    api
-      .fetchArticle(id)
-      .then(async article => {
-        const comments = await api.getCommentsByArticleId(id)
-        this.setState({ article, comments, loading: false })
-      })
-      .catch(err => {
-        this.setState({ hasError: true })
-      })
+  componentDidMount () {
+    this.getArticle()
+    this.getComments()
   }
 
   getArticle = () => {
@@ -114,18 +108,18 @@ class ArticleDetail extends Component {
       })
   }
 
-  // getComments = () => {
-  //   const { id } = this.props
-  //   axios
-  //     .get(
-  //       `https://nc-news-be-flaviu.herokuapp.com/api/articles/${id}/comments`
-  //     )
-  //     .then(({ data }) => {
-  //       this.setState({
-  //         comments: data.comments
-  //       })
-  //     })
-  // }
+  getComments = () => {
+    const { id } = this.props
+    axios
+      .get(
+        `https://nc-news-be-flaviu.herokuapp.com/api/articles/${id}/comments`
+      )
+      .then(({ data }) => {
+        this.setState({
+          comments: data.comments
+        })
+      })
+  }
 
   handleChange = e => {
     this.setState({

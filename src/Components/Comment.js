@@ -4,7 +4,7 @@ import Moment from 'react-moment'
 import Voter from './Voter'
 // import Deleter from './Deleter'
 import axios from 'axios'
-import { navigate } from '@reach/router'
+import { FaExclamationCircle } from 'react-icons/lib/fa'
 
 class Comment extends Component {
   state = {
@@ -20,10 +20,10 @@ class Comment extends Component {
     //   created_at,
     //   votes
     // } = this.props.comment
-    console.log(comment)
+
     return (
       <div className='article_user'>
-        <p>{comment.body}</p>
+        <p className='art_body'>{comment.body}</p>
         <div className='cardData'>
           <div>by {comment.author}</div>
           <Moment format='YYYY/MM/DD'>{comment.created_at}</Moment>
@@ -35,11 +35,20 @@ class Comment extends Component {
           {/* {user.username === author ? (
             <Deleter comment_id={comment_id} id={id} />
           ) : null} */}
-          {user.username === comment.author ? (
-            <button type='button' onClick={this.deleteComment}>
-              delete
-            </button>
-          ) : null}
+          <div className='votebutton_parent'>
+            {user.username === comment.author ? (
+              <button
+                className='votebutton'
+                type='button'
+                onClick={this.deleteComment}
+              >
+                delete
+                <FaExclamationCircle
+                  style={{ fontSize: '3vh', color: 'red', textAlign: 'center' }}
+                />
+              </button>
+            ) : null}
+          </div>
         </div>
       </div>
     )
