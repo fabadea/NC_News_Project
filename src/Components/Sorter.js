@@ -6,7 +6,6 @@ class Sorter extends Component {
   state = { criteria: '', articles: [] }
   render () {
     const { articles } = this.state
-    console.log(articles)
 
     return (
       <div>

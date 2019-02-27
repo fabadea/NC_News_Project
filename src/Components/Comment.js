@@ -12,7 +12,7 @@ class Comment extends Component {
   }
   render () {
     const { user, id } = this.props
-    const { comment } = this.state
+    const { comment } = this.props
     // const {
     //   comments: comment_id,
     //   body,
@@ -20,7 +20,6 @@ class Comment extends Component {
     //   created_at,
     //   votes
     // } = this.props.comment
-
     return (
       <div className='article_user'>
         <p className='art_body'>{comment.body}</p>
@@ -54,11 +53,11 @@ class Comment extends Component {
     )
   }
 
-  componentDidMount () {
-    this.setState({
-      comment: this.props.comment
-    })
-  }
+  // componentDidMount () {
+  //   this.setState({
+  //     comment: this.props.comment
+  //   })
+  // }
 
   deleteComment = () => {
     const { id } = this.props

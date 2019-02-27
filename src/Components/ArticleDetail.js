@@ -29,6 +29,8 @@ class ArticleDetail extends Component {
       comments
     } = this.state
     const { user, id } = this.props
+    // console.log(comments)
+
     if (hasError) return <ArticleNotFound />
     return loading ? (
       <BarLoader color='grey' />
@@ -140,10 +142,11 @@ class ArticleDetail extends Component {
           body
         )
         .then(({ data }) => {
-          this.setState({
-            comments: [data.comment, ...this.state.comments],
+          console.log(data.comment)
+          this.setState(state => ({
+            comments: [data.comment[0], ...state.comments],
             newComment: ''
-          })
+          }))
         })
     }
   }

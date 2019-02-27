@@ -21,9 +21,9 @@ class Auth extends Component {
           <br />
           Login first
         </div>
-        <p className='msg'>Use one of the users provided bellow and login</p>
+        <p className='msg'>Use one of the users provided below and login</p>
         {hasError && (
-          <p className='msg'>Try again with one of provided username</p>
+          <p className='msg'>Try again with one of the provided username</p>
         )}
         <form className='user_input_form' onSubmit={this.handleSubmit}>
           <input
